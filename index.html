@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        :root {
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 30px auto;
+            width: 700px;
+            border: 1px solid;
+        }
+
+        .btn-box {
+            width: 100%;
+            border-bottom: 1px solid;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .btn-box button {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .img-box {
+            height: 500px;
+            text-align: center;
+            line-height: 500px;
+        }
+
+        img {
+            width: 400px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="btn-box">
+        </div>
+        <div class="img-box">
+            <img src="" alt="">
+        </div>
+    </div>
+    <script>
+        var imgList = [
+            './images/WechatIMG61.jpeg',
+            './images/WeChat232cad03e7b0e450e02de677db98a7ad.jpg',
+            './images/WeChatdf56d88522028b0a04b8bcad84e78fec.jpg'
+        ]
+        var imgDom = document.getElementsByTagName('IMG')[0]
+        imgDom.src = imgList[0]
+        var btnsBox = document.getElementsByClassName('btn-box')[0]
+        for (var i = 0; i < imgList.length; i++) {
+            var btn = document.createElement('BUTTON')
+            btn.innerText = `第${i+1}张`
+            btn.dataset.src = imgList[i]
+            btn.onclick = function (e) {
+                var src = e.target.dataset.src
+                imgDom.src = src
+            }
+            btnsBox.append(btn)
+        }
+        imgDom.onclick = function (e) {
+            // e.preventDefault()
+            var aDom = document.createElement('A')
+            aDom.href = e.target.src
+            aDom.download = ''
+            aDom.target = '_blank'
+            aDom.click()
+            aDom.remove()
+        }
+    </script>
+</body>
+
+</html>
